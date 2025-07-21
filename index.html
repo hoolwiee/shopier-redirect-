@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yönlendiriliyor...</title>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+
+    // Ürünlere göre linkler
+    const productMap = {
+      “5”li victoria: “https://www.shopier.com/36783011”
+      “saten”: "https://www.shopier.com/36582901”
+    };
+
+    let shopierUrl = productMap[product] || "https://www.shopier.com/ana-sayfa";
+
+    // Tüm query parametreleri al
+    const query = window.location.search;
+
+    // shopierUrl zaten query içeriyor olabilir, query tekrar eklenmesin diye filtreleyebiliriz, ama basitçe:
+    const target = shopierUrl + query;
+
+    setTimeout(() => {
+      window.location.href = target;
+    }, 300);
+  </script>
+</head>
+<body>
+  <p>Yönlendiriliyorsunuz, lütfen bekleyin...</p>
+</body>
+</html>
+
+
