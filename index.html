@@ -2,24 +2,26 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Yönlendiriliyor...</title>
+  <title>Yönlendiriliyorsunuz...</title>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const product = urlParams.get('product');
 
-    // Ürünlere göre linkler
     const productMap = {
-      “5”li victoria: “https://www.shopier.com/36783011”
-      “saten”: "https://www.shopier.com/36582901”
+      "5li_victoria": "https://www.shopier.com/36783011",
+      "saten": "https://www.shopier.com/36582901"
     };
 
-    let shopierUrl = productMap[product] || "https://www.shopier.com/ana-sayfa";
+    let shopierUrl = productMap[product] || "https://www.shopier.com/";
 
-    // Tüm query parametreleri al
-    const query = window.location.search;
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.delete('product');
 
-    // shopierUrl zaten query içeriyor olabilir, query tekrar eklenmesin diye filtreleyebiliriz, ama basitçe:
-    const target = shopierUrl + query;
+    let target = shopierUrl;
+    const remainingParams = queryParams.toString();
+    if (remainingParams) {
+      target += "?" + remainingParams;
+    }
 
     setTimeout(() => {
       window.location.href = target;
@@ -30,5 +32,3 @@
   <p>Yönlendiriliyorsunuz, lütfen bekleyin...</p>
 </body>
 </html>
-
-
